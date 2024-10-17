@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
 
+public struct ActionParameters
+{
+    [Tooltip("Action that is gonna be executed")]
+    public Action action;// acciones que van a ser ejecutadas //array de acciones
+
+    [Tooltip("Indicates if the action´s check must be true or false")]
+    public bool actionValue;
+}
+
+[System.Serializable]
+
 public struct StateParameters
 {
-    [Tooltip("Indicates if the action´s check must be true o false")] //el tooltip saca el comentario fuera para aclarar su funcion
-    public bool[] actionValues; //indica si la accion chech es falsa o verdadera//array de valores
-
-    [Tooltip("Action that is gonna be executed")]
-    public Action[] actions;// acciones que van a ser ejecutadas //array de acciones
+    [Tooltip("ActionParameters´, array")]
+    public ActionParameters[] actionParameters;
 
     [Tooltip("If the action´s check equals actionValeu, nextState is pushed")]
     public State nextState;//si la accion check es igual a actionvalue el nextState pushed
 
-    [Tooltip("Se cumplen todas las acciones o solo se tiene que cumpli una?")]
+
+    [Tooltip("Se cumplen todas las acciones o solo se tiene que cumplir una?")]
     public bool and;//para que se cumplan todas
 }
 
@@ -29,9 +38,10 @@ public abstract class State : ScriptableObject // es abstract porque el Run no v
         for (int i = 0; i < stateparameters.Length; i++)
         {
             bool todasLasAccionesSeHanCumplido = true; //asumimos que todas las acciones se van a cumplir
-           for(int j = 0; j < stateparameters[i].actions.Length; j++) //en cada parametro tenemos un array que tiene que cumplir asi que tenemos que recorrer ese array
+           for(int j = 0; j < stateparameters[i].actionParameters.Length; j++) //en cada parametro tenemos un array que tiene que cumplir asi que tenemos que recorrer ese array
            {
-                if (stateparameters[i].actions[j].Check(owner) == stateparameters[i].actionValues[j])//comprobando cada una de las acciones con el valor asignado
+                ActionParameters actionParameter = stateparameters[i].actionParameters[j];
+                if (actionParameter.action.Check(owner) == actionParameter.actionValue)//comprobando cada una de las acciones con el valor asignado
                 {
                     if (!stateparameters[i].and)// si solo se tiene que cumplir una
                     {
@@ -60,11 +70,11 @@ public abstract class State : ScriptableObject // es abstract porque el Run no v
 
     public void DrawAllACtionsGizmos(GameObject owner)
     {
-        foreach(StateParameters parameter  in stateparameters)//recorre los parametros
+        foreach( StateParameters parameter in stateparameters)//recorre los parametros
         {
-            foreach(Action action in parameter.actions)
+            foreach (ActionParameters aP in parameter.actionParameters)
             {
-                action.DrawGizmos(owner);//recorre cada parametro,coge la accion que tiene asociada y  dibuja su gizmo
+                aP.action.DrawGizmos(owner);//recorre cada parametro,coge la accion que tiene asociada y  dibuja su gizmo
             }
             
         }

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: ChaseState(s)
   m_EditorClassIdentifier: 
   stateparameters:
-  - actionValues: 0000
-    actions:
-    - {fileID: 11400000, guid: 3c52a067d98afa4418a47b8cf30e3699, type: 2}
-    - {fileID: 11400000, guid: 792ecd4e908a5424f8b43204e84b979a, type: 2}
+  - actionParameters:
+    - action: {fileID: 11400000, guid: 792ecd4e908a5424f8b43204e84b979a, type: 2}
+      actionValue: 0
+    - action: {fileID: 11400000, guid: 3c52a067d98afa4418a47b8cf30e3699, type: 2}
+      actionValue: 0
     nextState: {fileID: 11400000, guid: 68dc80da6cf8e31498e5e2f47646f5ef, type: 2}
     and: 1
