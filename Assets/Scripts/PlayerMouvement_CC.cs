@@ -10,7 +10,7 @@ public class PlayerMouvement_CC : MonoBehaviour
 
     private CharacterController characterController;
 
-    public float speed, runningSpeed, rotationSpeed, gravityScale, jumpForce;
+    public float walkingSpeed, runningSpeed, acceleration, rotationSpeed, gravityScale, jumpForce;
 
     private float yvelocity = 0, currentSpeed;
 
@@ -55,13 +55,18 @@ public class PlayerMouvement_CC : MonoBehaviour
 
     void Movement(float x, float z, bool shiftPressed)
     {
-        if (shiftPressed)
+        //INTERPOLACION DE VELOCIDAD
+        if (shiftPressed && (x != 0 || z != 0)) 
         {
-            currentSpeed = runningSpeed;//si presionas el shif se cambia a la velocidad de running
+            currentSpeed = Mathf.Lerp(currentSpeed, runningSpeed, acceleration * Time.deltaTime);//si presionas el shif se cambia a la velocidad de running
+        }
+        else if(x != 0 || z != 0)
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, walkingSpeed, acceleration * Time.deltaTime); // si no lo presionas se pone la velocidad normal
         }
         else
         {
-            currentSpeed = speed;// si no lo presionas se pone la velocidad normal
+            currentSpeed = Mathf.Lerp(currentSpeed, 0, acceleration * Time.deltaTime); //vamos de current a 0 poeque frenamos
         }
 
          Vector3 movementVector = (transform.forward * currentSpeed * z) + (transform.right * currentSpeed * x);
@@ -80,9 +85,9 @@ public class PlayerMouvement_CC : MonoBehaviour
 
     }
 
-    public Vector3 GetMovementVector() //para acceder desde el playeranimations
+    public float GetCurrentSpeed() //para acceder desde el playeranimations
     {
-        return auxMovementVector;
+        return currentSpeed;
     }
 
     void RotatePlayer(float mouseX)

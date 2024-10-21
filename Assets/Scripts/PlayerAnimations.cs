@@ -48,6 +48,6 @@ public class PlayerAnimations : MonoBehaviour
 
     private void LateUpdate()
     {
-        animator.SetFloat("Speed", playerMouvement_CC.GetMovementVector().magnitude / playerMouvement_CC.runningSpeed);//
+        animator.SetFloat("Speed", playerMouvement_CC.GetCurrentSpeed() / playerMouvement_CC.runningSpeed);
     }
 }

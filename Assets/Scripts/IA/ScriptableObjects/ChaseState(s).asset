@@ -20,3 +20,4 @@ MonoBehaviour:
       actionValue: 0
     nextState: {fileID: 11400000, guid: 68dc80da6cf8e31498e5e2f47646f5ef, type: 2}
     and: 1
+  blendParameter: Speed
