@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c239c604bc93498eccd562cb96e3a, type: 3}
-  m_Name: ChaseState(s)
+  m_Script: {fileID: 11500000, guid: 1f4ae697d41465148a78eea11e18c64a, type: 3}
+  m_Name: GuardState(2) 1
   m_EditorClassIdentifier: 
   stateparameters:
   - actionParameters:
     - action: {fileID: 11400000, guid: 3c52a067d98afa4418a47b8cf30e3699, type: 2}
-      actionValue: 0
-    nextState: {fileID: 11400000, guid: 68dc80da6cf8e31498e5e2f47646f5ef, type: 2}
-    and: 1
+      actionValue: 1
+    nextState: {fileID: 11400000, guid: f5da29d63b154114983a7f4cfb70421a, type: 2}
+    and: 0
+  guardPoint: {x: 0, y: 0, z: 0}
   blendParameter: Speed

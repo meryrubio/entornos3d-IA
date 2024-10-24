@@ -16,9 +16,12 @@ MonoBehaviour:
   - actionParameters:
     - action: {fileID: 11400000, guid: 792ecd4e908a5424f8b43204e84b979a, type: 2}
       actionValue: 1
-    - action: {fileID: 11400000, guid: 3c52a067d98afa4418a47b8cf30e3699, type: 2}
-      actionValue: 1
     nextState: {fileID: 11400000, guid: f5da29d63b154114983a7f4cfb70421a, type: 2}
+    and: 1
+  - actionParameters:
+    - action: {fileID: 11400000, guid: b5c2916c66e679248afe102ee32d42cb, type: 2}
+      actionValue: 1
+    nextState: {fileID: 11400000, guid: 6a993ea8522968348a202833c0676f1f, type: 2}
     and: 1
   guardPoint: {x: 203.1, y: 11.8, z: 760.9}
   blendParameter: Speed
